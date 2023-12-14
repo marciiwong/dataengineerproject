@@ -1,0 +1,9 @@
+airflow-db
+warehouse_data
+pgadmin_data
+metabase
+.idea
+__MACOSX
+*.pyc
+*.csv
+*.log
