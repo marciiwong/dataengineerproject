@@ -1,12 +1,12 @@
 import config as config
 import uuid
+import ast
 
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
 from sqlalchemy import Column, Integer, String
-from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.dialects.postgresql import JSONB
+from sqlalchemy.dialects.postgresql import UUID, JSON, JSONB
 
 
 class Connection(object):
@@ -53,18 +53,3 @@ class Users(Base):
     picture = Column(JSONB)
     nat = Column(String)
 
-    def __init__(self, **kwargs):
-        self.user_id = kwargs['user_id']
-        self.seed = kwargs['seed']
-        self.gender = kwargs['gender']
-        self.name = kwargs['name']
-        self.location = kwargs['location']
-        self.email = kwargs['email']
-        self.login = kwargs['login']
-        self.dob = kwargs['dob']
-        self.registered = kwargs['registered']
-        self.phone = kwargs['phone']
-        self.cell = kwargs['cell']
-        self.id = kwargs['id']
-        self.picture = kwargs['picture']
-        self.nat = kwargs['nat']
