@@ -32,3 +32,14 @@ left join analytics.dim_date dd
 on fu.reg_date = dd.date
 group by dd.day_of_week
 order by dd.day_of_week
+
+
+--Query for question 3
+-- What are the top 5 nationalities of the users?
+select nationality, count(*)
+from analytics.fact_users fu
+left join analytics.dim_nationality n
+on fu.nationality_id = n.nationality_id
+group by nationality
+order by count(*) desc
+limit 5s
