@@ -1,5 +1,5 @@
 SELECT TO_CHAR(datum, 'yyyymmdd')::INT AS dim_date_id,
-       datum AS date,
+       datum::date AS date,
        TO_CHAR(datum, 'TMDay') AS day_name,
        EXTRACT(ISODOW FROM datum) AS day_of_week,
        EXTRACT(DAY FROM datum) AS day_of_month,
@@ -15,7 +15,7 @@ FROM (
       from 
       generate_series(
          (select min(dob)::date from {{ ref('staging_users') }}), 
-         (select max(dob)::date from {{ ref('staging_users') }}),
+         (select current_date::date),
          '1 day'
       ) as datum
 ) DQ

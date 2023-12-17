@@ -9,14 +9,14 @@
   
   (
     select 
-    user_id
-    ,first_name
-    ,last_name
-    ,seed as seed
-    ,dob
-    ,dd.dim_date_id
-    ,sg.gender_id
-    ,sn.nationality_id
+    user_id::varchar(255) as user_id
+    ,first_name::varchar(255) as first_name
+    ,last_name::varchar(255) as last_name
+    ,seed::varchar(255) as seed
+    ,dob::date as dob
+    ,sg.gender_id::int as gender_id
+    ,sn.nationality_id::int as nationality_id
+    ,ru.reg_date::date as reg_date
 from "warehouse"."analytics"."staging_users" ru
 inner join "warehouse"."analytics"."dim_date" dd
 on ru.dob::date = dd.date::date 

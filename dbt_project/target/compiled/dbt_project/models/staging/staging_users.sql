@@ -6,5 +6,6 @@ SELECT
     (dob ->> 'date')::VARCHAR(10) AS dob,
     (dob ->> 'age')::INT AS age,
     nat::VARCHAR(100) AS nationality,
-    gender::VARCHAR(5) AS gender
+    gender::VARCHAR(5) AS gender,
+    (registered ->> 'date')::DATE as reg_date
 FROM "warehouse"."raw"."users"
