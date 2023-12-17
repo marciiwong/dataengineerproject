@@ -4,7 +4,6 @@ import os
 from sqlalchemy import MetaData, Table
 from sqlalchemy.schema import CreateSchema
 from model import Connection, Base
-import extract as e
 import config as config
 
 # Initialize directory and csv file
@@ -12,7 +11,6 @@ import config as config
 def init_csv_file():
 
     Path(config.CSV_FILE_DIR).mkdir(parents=True, exist_ok=True)
-    e.main()
     
 
 # Initialize schema and table

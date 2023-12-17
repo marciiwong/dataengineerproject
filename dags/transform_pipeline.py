@@ -5,7 +5,7 @@ from airflow.operators.bash_operator import BashOperator
 
 
 default_args = {
-    'retries': 0,
+    'retries': 3,
     'retry_delay': timedelta(minutes=3),
     'start_date': datetime(2023, 12, 1),
     'schedule_interval': '0 9 * * *'
