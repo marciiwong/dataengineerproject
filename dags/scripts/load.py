@@ -1,6 +1,6 @@
 import pandas as pd
 from pathlib import Path
-import ast
+import json
 
 from model import Connection, Users
 import config
@@ -25,10 +25,6 @@ def main():
     data = pd.read_csv(filename)
     cols = ['user_id', 'seed', 'gender', 'name', 'location', 'email', 'login', 'dob', 'registered', 'phone', 'cell', 'id', 'picture', 'nat']
     data = data[cols]
-    json_cols = ['name', 'location', 'login', 'dob', 'registered', 'id', 'picture']
-    for i in json_cols:
-        data[i] = data[i].apply(lambda x: ast.literal_eval(x))
-
     data_insert = data.to_dict('records')
 
     # Connect with the db

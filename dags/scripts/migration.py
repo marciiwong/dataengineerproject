@@ -1,6 +1,7 @@
 from pathlib import Path
 import os
 
+from sqlalchemy import MetaData, Table
 from sqlalchemy.schema import CreateSchema
 from model import Connection, Base
 import extract as e
@@ -28,6 +29,10 @@ def init_db():
     schema_name = 'raw'
     if not engine.dialect.has_schema(engine, schema_name):
         engine.execute(CreateSchema(schema_name, if_not_exists=True))
+
+    metadata = MetaData()
+    users_table = Table('users', metadata, autoload_with=engine, schema='raw')
+    users_table.drop(engine)
     
     Base.metadata.create_all(engine)
 

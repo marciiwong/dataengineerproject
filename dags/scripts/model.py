@@ -1,5 +1,4 @@
 import config as config
-import uuid
 import ast
 
 from sqlalchemy.orm import sessionmaker
@@ -53,3 +52,18 @@ class Users(Base):
     picture = Column(JSONB)
     nat = Column(String)
 
+    def __init__(self, **kwargs):
+        self.user_id = kwargs['user_id']
+        self.seed = kwargs['seed']
+        self.gender = kwargs['gender']
+        self.name = ast.literal_eval(kwargs['name'])
+        self.location = ast.literal_eval(kwargs['location'])
+        self.email = kwargs['email']
+        self.login = ast.literal_eval(kwargs['login'])
+        self.dob = ast.literal_eval(kwargs['dob'])
+        self.registered = ast.literal_eval(kwargs['registered'])
+        self.phone = kwargs['phone']
+        self.cell = kwargs['cell']
+        self.id = ast.literal_eval(kwargs['id'])
+        self.picture = ast.literal_eval(kwargs['picture'])
+        self.nat = kwargs['nat']

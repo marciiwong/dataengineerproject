@@ -61,7 +61,6 @@ def import_data(calls=10000):
 
     with concurrent.futures.ThreadPoolExecutor(10) as executor:
         responses = executor.map(get_data, seeds)
-    
     responses = list(responses)
     
     return responses
@@ -90,7 +89,7 @@ def transform_data(data_json):
     df['results'] = df['results'].apply(lambda x: x[0])
     expand_result = pd.json_normalize(df['results'], max_level=0)
     df = pd.concat([df, expand_result], axis=1)
-    df['user_id'] = df['seed'].apply(lambda x: uuid.uuid5(uuid.uuid4(), x))
+    df['user_id'] = df['seed'].apply(lambda x: uuid.uuid5(uuid.NAMESPACE_X500, x))
     
     return df
 
@@ -106,7 +105,7 @@ def save_new_data_to_csv(data):
 
 def main():
 
-    data = import_data(calls=100)
+    data = import_data(calls=10000)
     data = transform_data(data_json=data)
     save_new_data_to_csv(data)
 
