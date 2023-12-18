@@ -42,4 +42,4 @@ left join analytics.dim_nationality n
 on fu.nationality_id = n.nationality_id
 group by nationality
 order by count(*) desc
-limit 5s
+limit 5
